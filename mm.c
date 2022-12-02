@@ -44,6 +44,11 @@ team_t team = {
 
 #define SIZE_T_SIZE (ALIGN(sizeof(size_t)))
 
+/* Basic constants and macros*/
+#define WSIZE 4 /* Word and header/footer size (bytes) */
+#define DSIZE 8 /* Double word size (bytes)*/
+#define CHUNKSIZE (1<<12) /* Extend heap by this amount (bytes)*/
+
 /*
  * mm_init - initialize the malloc package.
  */
