@@ -74,6 +74,7 @@ static char* heap_listp;
 
 static void* extend_heap(size_t size);
 static void* coalesce(void* bp);
+static void* find_fit(size_t asize);
 
 /*
  * mm_init - initialize the malloc package. , 최초 가용 블록으로 힙 생성하기
@@ -206,4 +207,17 @@ static void* coalesce(void* bp) {
     }
 
     return bp;
+}
+
+static void* find_fit(size_t asize) {
+    // First-fit search
+    void* bp;
+
+    for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp)) {
+        if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp)))) {
+            return bp;
+        }
+    }
+
+    return NULL; // No fit
 }
