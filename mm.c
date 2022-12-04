@@ -70,7 +70,7 @@ team_t team = {
 #define NEXT_BLKP(bp) ((char*)(bp) + GET_SIZE(((char*)(bp) - WSIZE)))
 #define PREV_BLKP(bp) ((char*)(bp) - GET_SIZE(((char*)(bp) - DSIZE)))
 
-void* heap_listp;
+static char* heap_listp;
 
 static void* extend_heap(size_t size);
 static void* coalesce(void* bp);
